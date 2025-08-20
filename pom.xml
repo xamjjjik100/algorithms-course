@@ -53,8 +53,7 @@
         <configuration>
           <archive>
             <manifest>
-              <!-- Полное имя класса с методом main(...) -->
-              <mainClass>com.example.App</mainClass>
+            <mainClass>education.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
