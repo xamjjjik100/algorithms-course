@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- POM = Project Object Model: главный файл настроек Maven -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- Версия модели POM -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Координаты артефакта (уникальный идентификатор вашего JAR в мире Maven) -->
+  <groupId>com.example</groupId>     <!-- обычно домен наоборот: com.mycompany -->
+  <artifactId>my-app</artifactId>    <!-- имя проекта / JAR -->
+  <version>1.0.0</version>           <!-- версия вашего артефакта -->
+  <packaging>jar</packaging>         <!-- тип упаковки: jar/war/pom и т.д. -->
+
+  <!-- Общие свойства проекта -->
+  <properties>
+    <!-- Говорим компилятору на какую версию Java нацеливаться -->
+    <maven.compiler.release>17</maven.compiler.release>
+    <!-- Зафиксируем кодировку исходников и ресурсов -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- Зависимости (пока пусто; пример юнит-тестов ниже закомментирован) -->
+  <dependencies>
+    <!-- Пример: JUnit 5 для тестов
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.2</version>
+      <scope>test</scope>
+    </dependency>
+    -->
+  </dependencies>
+
+  <!-- Сборка: плагины Maven -->
+  <build>
+    <plugins>
+      <!-- Плагин компиляции Java (подтягивает настройки из maven.compiler.release) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+
+      <!-- Плагин упаковки JAR и запись Main-Class в манифест,
+           чтобы можно было запускать `java -jar ...` -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <!-- Полное имя класса с методом main(...) -->
+              <mainClass>com.example.App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
