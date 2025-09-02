@@ -1,12 +1,26 @@
 package education;
 
-import education.minmaxvalue.MinMaxValue;
+import education.graph.Edge;
+import education.graph.GraphRearrangement;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        MinMaxValue finder = new MinMaxValue();
-        int[] data = { 7, 2, 9, 4, 5, 1, 8, 148, -200 };
-        int[] result = finder.findMinMax(data);
-        System.out.println("Min = " + result[0] + ", Max = " + result[1]);
+        // Пример матрицы смежности
+        int[][] matrix = {
+                { 0, 5, 6, 0, 8 },
+                { 5, 0, 0, 0, 4 },
+                { 6, 0, 0, 3, 0 },
+                { 0, 0, 3, 0, 2 },
+                { 8, 4, 0, 2, 0 }
+        };
+
+        List<Edge> edges = GraphRearrangement.adjacencyMatrixToEdgeList(matrix);
+
+        System.out.println("Edges:");
+        for (Edge e : edges) {
+            System.out.println(e);
+        }
     }
 }

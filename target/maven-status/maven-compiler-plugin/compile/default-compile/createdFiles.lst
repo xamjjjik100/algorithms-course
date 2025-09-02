@@ -1,2 +1,10 @@
 education\Main.class
+education\graph\Edge.class
 education\minmaxvalue\MinMaxValue.class
+education\network\NetworkArray$Connection.class
+education\network\NetworkArray.class
+education\network\NetworkNodes$Connection.class
+education\network\NetworkNodes.class
+education\graph\Graph.class
+education\network\NetworkNodes$Node.class
+education\sortedlist\SortedListSet.class
