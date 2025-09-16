@@ -1,26 +1,31 @@
 package education;
 
-import education.graph.Edge;
-import education.graph.GraphRearrangement;
+import education.peoplestream.PeopleStream;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // Пример матрицы смежности
-        int[][] matrix = {
-                { 0, 5, 6, 0, 8 },
-                { 5, 0, 0, 0, 4 },
-                { 6, 0, 0, 3, 0 },
-                { 0, 0, 3, 0, 2 },
-                { 8, 4, 0, 2, 0 }
-        };
+        try {
+            // тестовый для проверки
+            URL resource = Main.class.getClassLoader().getResource("people.txt");
+            if (resource == null) {
+                throw new IllegalArgumentException("Файл не найден!");
+            }
 
-        List<Edge> edges = GraphRearrangement.adjacencyMatrixToEdgeList(matrix);
+            Path path = Path.of(resource.toURI());
 
-        System.out.println("Edges:");
-        for (Edge e : edges) {
-            System.out.println(e);
+            Map<Integer, List<String>> result = PeopleStream.stream(path);
+            System.out.println(result);
+
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
         }
+
     }
 }
