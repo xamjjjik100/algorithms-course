@@ -1,31 +1,21 @@
 package education;
 
-import education.peoplestream.PeopleStream;
+import education.proxy.AddCountingProxy;
+import education.proxy.TestProxy;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            // тестовый для проверки
-            URL resource = Main.class.getClassLoader().getResource("people.txt");
-            if (resource == null) {
-                throw new IllegalArgumentException("Файл не найден!");
-            }
+        List<Integer> base = new ArrayList<>(List.of(1, 2, 3, 4, 5));
 
-            Path path = Path.of(resource.toURI());
+        List<Integer> countingList = AddCountingProxy.wrap(base);
 
-            Map<Integer, List<String>> result = PeopleStream.stream(path);
-            System.out.println(result);
+        AddCountingProxy.resetCounter();
 
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+        TestProxy.test(countingList);
 
+        System.out.println("add вызван: " + AddCountingProxy.getCounter());
     }
 }
