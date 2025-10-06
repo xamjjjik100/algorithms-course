@@ -1,7 +1,6 @@
-package education.graph;
+package education.tsort;
 
 import org.junit.jupiter.api.Test;
-import education.tsort.TopologicalSort;
 
 import java.util.List;
 
