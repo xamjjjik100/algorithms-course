@@ -1,21 +1,17 @@
 package education;
 
-import education.proxy.AddCountingProxy;
-import education.proxy.TestProxy;
+import education.mvvm.samples.model.User;
+import education.mvvm.samples.view.UserForm;
+import education.mvvm.samples.vm.UserViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> base = new ArrayList<>(List.of(1, 2, 3, 4, 5));
-
-        List<Integer> countingList = AddCountingProxy.wrap(base);
-
-        AddCountingProxy.resetCounter();
-
-        TestProxy.test(countingList);
-
-        System.out.println("add вызван: " + AddCountingProxy.getCounter());
+        SwingUtilities.invokeLater(() -> {
+            User user = new User();
+            UserViewModel vm = new UserViewModel(user);
+            new UserForm(vm).setVisible(true);
+        });
     }
 }
